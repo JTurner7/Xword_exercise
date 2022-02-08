@@ -1,15 +1,5 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>{% dr.title %}</h2>
-<h2>{% dr.date %}</h2>
-<h2>{% dr.byline %}</h2>
-<h2>{% dr.publisher %}</h2>
-<p>Clue: {% cl.clue_text %}</p>
-{% csrf_token %}
-<form method="post" action="/drill/<int:pk>">
-  {{form.as_p}}
-  <button type="submit", name="submit">Submit</button>
-</form>
-
+<h1>Correct!</h1>
 {% endblock %}
