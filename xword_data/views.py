@@ -14,5 +14,21 @@ from django.shortcuts import render
   database then the answer page for the clue presents a table of Entries associated with the clue
   and a count of how many times that Clue/Entry pair appear in the database."""
 
-def drill(response):
-    context = {}
+def drill(response, id):
+    cl = Clue.objects.get(id=id)
+    dr = Puzzle.objects.get(id=puzzle_id)
+    if response.method == 'POST':
+        form = SubmitDrill(response.POST)
+        if form.isvalid():
+            if form.cleaned_data['submit'].upper() == Entry.objects.get(id=entry_id):
+                return HttpResponseRedirect('/answer/%i' %entry_id)
+    else:
+        form = SubmitDrill()
+
+    context = {'dr':dr, 'form':form}
+    return render(response, 'drill.html', context)
+
+def answer(response, id):
+    cl = clue.objects.get(id=id)
+    
+    context = {'dr':dr}
